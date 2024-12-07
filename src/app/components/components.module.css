@@ -13,5 +13,11 @@
   border-top: solid 1px;
 }
 .components {
-  margin: 20px auto;
+  margin: 20px 100px;
+}
+.checkBoxComponents {
+  padding: 20px 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }

@@ -1,29 +1,19 @@
-"use client";
-
-import { useState } from "react";
-interface Prefecture {
-  id: number;
-  code: string;
-  name: string;
-  area_id: number;
-  created_at: string;
-  updated_at: string;
-}
+import axios from "axios";
+import { Prefecture } from "./types";
 
 const getPrefecturesData = async (): Promise<Prefecture[]> => {
-  const [prefectures, setPrefectures] = useState("");
-  try {
-    const response = await fetch(
-      "https://apis.apima.net/k2srm05wzm1pdl3xk0sv/v1/prefectures/"
-    );
-    const data = await response.json();
-    setPrefectures(data.name);
-    console.log(data);
-    return data.prefectures;
-  } catch (error) {
-    console.error("取得に失敗しました", error);
-    return [];
-  }
+  //都道府県APIの取得
+  const prefectures = await axios
+    .get("https://apis.apima.net/k2srm05wzm1pdl3xk0sv/v1/prefectures/")
+    .then((results) => {
+      return results.data;
+    })
+    .catch((error) => {
+      console.log("取得に失敗しました");
+      console.log(error.status);
+    });
+
+  return prefectures;
 };
 
 export { getPrefecturesData };
