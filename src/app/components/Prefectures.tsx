@@ -1,15 +1,39 @@
 import { getPrefecturesData } from "../lib/getPrefecturesData";
 import styles from "./components.module.css";
+import React from "react";
 
-const Prefectures = async () => {
-  const prefectures = await getPrefecturesData();
+type Props = {
+  prefectures:
+    | {
+        prefCode: number;
+        prefName: string;
+      }[];
+
+  onChange: (name: string, prefName: number, check: boolean) => void;
+};
+const Prefectures = ({ prefectures, onChange }: Props) => {
   return (
     <div className={styles.components}>
       <div className={styles.checkBoxComponents}>
         {prefectures.map((prefecture) => (
-          <div>
-            <input type="checkbox" name={prefecture.name} id={prefecture.id} />
-            <label htmlFor="checkbox">{prefecture.name}</label>
+          <div key={prefecture.prefName}>
+            <input
+              type="checkbox"
+              name="Prefecture name"
+              onChange={(event) => {
+                onChange(
+                  prefecture.prefName,
+                  prefecture.prefCode,
+                  event.target.checked
+                );
+              }}
+              id={"checkbox" + prefecture.prefCode}
+            />
+            <label htmlFor={"checkbox" + prefecture.prefCode}>
+              {prefecture.prefName.length === 3
+                ? "" + prefecture.prefName
+                : prefecture.prefName}
+            </label>
           </div>
         ))}
       </div>

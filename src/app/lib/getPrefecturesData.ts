@@ -3,7 +3,7 @@ import { Prefecture } from "./types";
 
 const getPrefecturesData = async (): Promise<Prefecture[]> => {
   //都道府県APIの取得
-  const prefectures = await axios
+  const data = await axios
     .get("https://apis.apima.net/k2srm05wzm1pdl3xk0sv/v1/prefectures/")
     .then((results) => {
       return results.data;
@@ -13,7 +13,7 @@ const getPrefecturesData = async (): Promise<Prefecture[]> => {
       console.log(error.status);
     });
 
-  return prefectures;
+  return data;
 };
 
 export { getPrefecturesData };
