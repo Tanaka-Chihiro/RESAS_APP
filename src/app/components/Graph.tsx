@@ -1,11 +1,16 @@
 import styles from "./components.module.css";
-// import { fetchEstatAPI } from "../lib/fetchEstatAPI";
 
-export default function Graph() {
-  // const estatAPI = fetchEstatAPI();
+type Props = {
+  populationdata: {
+    prefName: string;
+    data: { year: number; value: number }[];
+  }[];
+};
+
+export default function Graph({ populationdata }: Props) {
   return (
     <>
-      <div className={styles.components}></div>
+      <div className={styles.components}>{}</div>
     </>
   );
 }

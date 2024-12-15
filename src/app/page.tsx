@@ -7,8 +7,6 @@ export default function Home() {
     <>
       <Header />
       <Main />
-      {/* <Prefectures />
-      <Graph /> */}
       <Footer />
     </>
   );
