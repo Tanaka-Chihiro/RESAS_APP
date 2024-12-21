@@ -17,6 +17,9 @@
   margin: 20px 100px;
 }
 
+.p {
+  margin: 0px 50px;
+}
 .checkBoxComponents {
   padding: 20px 50px;
   display: grid;
@@ -28,14 +31,19 @@
 }
 .checkBoxLabel {
   margin-left: 5px;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .dropDownComponents {
   margin: 20px 50px;
 }
 .select {
-  width: 100px;
+  width: 150px;
   height: 30px;
   font-size: 16px;
+}
+
+.graph {
+  padding: 10px;
+  border: solid 1px #000;
 }

@@ -13,6 +13,7 @@ type Props = {
 const Prefectures = ({ prefectures, onChange }: Props) => {
   return (
     <div className={styles.components}>
+      <p className={styles.p}>都道府県を選択</p>
       <div className={styles.checkBoxComponents}>
         {prefectures.map((prefecture) => (
           <div key={prefecture.prefName}>
@@ -33,9 +34,7 @@ const Prefectures = ({ prefectures, onChange }: Props) => {
               className={styles.checkBoxLabel}
               htmlFor={"checkbox" + prefecture.prefCode}
             >
-              {prefecture.prefName.length === 3
-                ? "" + prefecture.prefName
-                : prefecture.prefName}
+              {prefecture.prefName}
             </label>
           </div>
         ))}

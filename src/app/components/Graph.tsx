@@ -4,13 +4,14 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 type Props = {
+  label: string;
   populationdata: {
     prefName: string;
     data: { year: number; value: number }[];
   }[];
 };
 
-const Graph = ({ populationdata }: Props) => {
+const Graph = ({ label, populationdata }: Props) => {
   let series: Highcharts.SeriesOptionsType[] = [];
   let categories = [];
 
@@ -28,19 +29,19 @@ const Graph = ({ populationdata }: Props) => {
       data: data,
     });
   }
-  //Highchartsの設定
+  //グラフの設定
   const options: Highcharts.Options = {
     title: {
-      text: "人口推移グラフ",
+      text: "推移グラフ：" + label,
     },
-    //x軸
+    //x軸：年度
     xAxis: {
       title: {
         text: "年度",
       },
       categories: categories,
     },
-    //y軸
+    //y軸：人口
     yAxis: {
       title: {
         text: "人口数",
@@ -56,7 +57,9 @@ const Graph = ({ populationdata }: Props) => {
   return (
     <>
       <div className={styles.components}>
-        <HighchartsReact highcharts={Highcharts} options={options} />
+        <div className={styles.graph}>
+          <HighchartsReact highcharts={Highcharts} options={options} />
+        </div>
       </div>
     </>
   );

@@ -1,28 +1,22 @@
 import styles from "./components.module.css";
 
 type ChildProps = {
+  options: { label: string; value: string }[];
   value: string;
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const Dropdown = ({ value, onChange }: ChildProps) => {
+const Dropdown = ({ options, value, onChange }: ChildProps) => {
   return (
     <>
       <div className={styles.components}>
         <div className={styles.dropDownComponents}>
           <select value={value} onChange={onChange} className={styles.select}>
-            <option key={0} value={"0"}>
-              総人口
-            </option>
-            <option key={1} value={"1"}>
-              年少人口
-            </option>
-            <option key={2} value={"2"}>
-              生産年齢人口
-            </option>
-            <option key={3} value={"3"}>
-              老年人口
-            </option>
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
         </div>
       </div>

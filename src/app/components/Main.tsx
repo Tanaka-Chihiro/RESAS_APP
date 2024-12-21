@@ -46,6 +46,7 @@ const Main = () => {
         console.log(error.status);
       });
   }, []);
+
   //プルダウンの選択肢
   const options = [
     { label: "総人口", value: "0" },
@@ -53,7 +54,7 @@ const Main = () => {
     { label: "生産年齢人口", value: "2" },
     { label: "老年人口", value: "3" },
   ];
-  //プルダウンを選択したときの処理
+  //年代を選択したときの処理
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);
   };
@@ -66,7 +67,7 @@ const Main = () => {
   ) => {
     let c_prefPopulation = prefPopulation.slice();
 
-    //チェックをつけたとき
+    //チェックをつけたときの処理
     if (check) {
       if (
         c_prefPopulation.findIndex((value) => value.prefName === prefName) !==
@@ -112,14 +113,26 @@ const Main = () => {
 
   return (
     <main>
-      <Dropdown value={selectedValue} onChange={handleChange} />
+      <Dropdown
+        options={options}
+        value={selectedValue}
+        onChange={handleChange}
+      />
       {prefectures && (
         <Prefectures
           prefectures={prefectures.result}
           onChange={handleClickCheck}
         />
       )}
-      <Graph populationdata={prefPopulation} />
+      {selectedValue === options[0].value ? (
+        <Graph label={options[0].label} populationdata={prefPopulation} />
+      ) : selectedValue === options[1].value ? (
+        <Graph label={options[1].label} populationdata={prefPopulation} />
+      ) : selectedValue === options[2].value ? (
+        <Graph label={options[2].label} populationdata={prefPopulation} />
+      ) : (
+        <Graph label={options[3].label} populationdata={prefPopulation} />
+      )}
     </main>
   );
 };
