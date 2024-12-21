@@ -1,4 +1,3 @@
-import { getPrefecturesData } from "../lib/getPrefecturesData";
 import styles from "./components.module.css";
 import React from "react";
 
@@ -28,8 +27,12 @@ const Prefectures = ({ prefectures, onChange }: Props) => {
                 );
               }}
               id={"checkbox" + prefecture.prefCode}
+              className={styles.checkBox}
             />
-            <label htmlFor={"checkbox" + prefecture.prefCode}>
+            <label
+              className={styles.checkBoxLabel}
+              htmlFor={"checkbox" + prefecture.prefCode}
+            >
               {prefecture.prefName.length === 3
                 ? "" + prefecture.prefName
                 : prefecture.prefName}

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Prefectures from "./Prefectures";
 import Graph from "./Graph";
+import Dropdown from "./Dropdown";
 
 const Main = () => {
   const [prefectures, setPrefectures] = useState<{
@@ -20,6 +21,10 @@ const Main = () => {
     }[]
   >([]);
 
+  const [selectedValue, setSelectedValue] = useState<string>("0");
+
+  const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+
   useEffect(() => {
     //都道府県一覧の取得
     axios
@@ -27,7 +32,7 @@ const Main = () => {
         "https://yumemi-frontend-engineer-codecheck-api.vercel.app/api/v1/prefectures",
         {
           headers: {
-            "X-API-KEY": "8FzX5qLmN3wRtKjH7vCyP9bGdEaU4sYpT6cMfZnJ",
+            "X-API-KEY": API_KEY,
             "Content-Type": "application/json; charset=UTF-8",
           },
         }
@@ -41,7 +46,19 @@ const Main = () => {
         console.log(error.status);
       });
   }, []);
+  //プルダウンの選択肢
+  const options = [
+    { label: "総人口", value: "0" },
+    { label: "年少人口", value: "1" },
+    { label: "生産年齢人口", value: "2" },
+    { label: "老年人口", value: "3" },
+  ];
+  //プルダウンを選択したときの処理
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedValue(event.target.value);
+  };
 
+  //チェックボックス
   const handleClickCheck = (
     prefName: string,
     prefCode: number,
@@ -64,7 +81,7 @@ const Main = () => {
             String(prefCode),
           {
             headers: {
-              "X-API-KEY": "8FzX5qLmN3wRtKjH7vCyP9bGdEaU4sYpT6cMfZnJ",
+              "X-API-KEY": API_KEY,
               "Content-Type": "application/json; charset=UTF-8",
             },
           }
@@ -72,7 +89,7 @@ const Main = () => {
         .then((results) => {
           c_prefPopulation.push({
             prefName: prefName,
-            data: results.data.result.data[0],
+            data: results.data.result.data[`${selectedValue}`].data,
           });
           setPrefPopulation(c_prefPopulation);
         })
@@ -95,6 +112,7 @@ const Main = () => {
 
   return (
     <main>
+      <Dropdown value={selectedValue} onChange={handleChange} />
       {prefectures && (
         <Prefectures
           prefectures={prefectures.result}
