@@ -27,12 +27,12 @@ const Prefectures = ({ prefectures, onChange }: Props) => {
                   event.target.checked
                 );
               }}
-              id={"checkbox" + prefecture.prefCode}
+              id={String(prefecture.prefCode)}
               className={styles.checkBox}
             />
             <label
               className={styles.checkBoxLabel}
-              htmlFor={"checkbox" + prefecture.prefCode}
+              htmlFor={String(prefecture.prefCode)}
             >
               {prefecture.prefName}
             </label>

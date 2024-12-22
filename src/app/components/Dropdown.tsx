@@ -11,6 +11,7 @@ const Dropdown = ({ options, value, onChange }: ChildProps) => {
     <>
       <div className={styles.components}>
         <div className={styles.dropDownComponents}>
+          人口構成：
           <select value={value} onChange={onChange} className={styles.select}>
             {options.map((option) => (
               <option key={option.value} value={option.value}>
