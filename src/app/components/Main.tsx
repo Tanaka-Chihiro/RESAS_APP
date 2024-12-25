@@ -6,6 +6,7 @@ import Graph from "./Graph";
 import Dropdown from "./Dropdown";
 
 const Main = () => {
+  //都道府県一覧
   const [prefectures, setPrefectures] = useState<{
     message: null;
     result: {
@@ -14,6 +15,10 @@ const Main = () => {
     }[];
   } | null>(null);
 
+  //アコーディオンメニュー
+  const [isOpen, setIsOpen] = useState(false);
+
+  //人口情報
   const [prefPopulation, setPrefPopulation] = useState<
     {
       prefName: string;
@@ -21,6 +26,7 @@ const Main = () => {
     }[]
   >([]);
 
+  //年代選択のプルダウンメニュー
   const [selectedValue, setSelectedValue] = useState<string>("0");
 
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
@@ -57,6 +63,7 @@ const Main = () => {
   //年代を選択したときの処理
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);
+    setPrefPopulation([]);
   };
 
   //チェックボックス
@@ -109,6 +116,11 @@ const Main = () => {
     }
   };
 
+  //アコーディオンメニューの処理
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
   console.log(prefPopulation);
 
   return (
@@ -122,6 +134,8 @@ const Main = () => {
         <Prefectures
           prefectures={prefectures.result}
           onChange={handleClickCheck}
+          isOpen={isOpen}
+          onToggle={handleToggle}
         />
       )}
       {selectedValue === options[0].value ? (

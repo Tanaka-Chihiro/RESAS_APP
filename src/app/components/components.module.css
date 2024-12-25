@@ -18,6 +18,13 @@
   margin: 20px 100px;
 }
 
+.PCcomponents {
+  margin: 20px 100px;
+}
+.SPcomponents {
+  display: none;
+}
+
 .p {
   margin: 0px 50px;
   margin-bottom: 5px;
@@ -38,11 +45,16 @@
 
 .dropDownComponents {
   margin: 20px 50px;
+  display: flex;
 }
 .select {
   width: 150px;
   height: 30px;
   font-size: 16px;
+}
+.dropdown_p {
+  margin-left: 10px;
+  font-size: 14px;
 }
 
 .graph {
@@ -71,8 +83,17 @@
     margin: 20px auto;
   }
 
+  .PCcomponents {
+    display: none;
+  }
+  .SPcomponents {
+    display: contents;
+    margin: 20px auto;
+  }
+
   .dropDownComponents {
     margin: 10px 20px;
+    display: columns;
   }
   .select {
     width: 100pxpx;

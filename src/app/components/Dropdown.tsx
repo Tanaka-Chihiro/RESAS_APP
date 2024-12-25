@@ -11,7 +11,7 @@ const Dropdown = ({ options, value, onChange }: ChildProps) => {
     <>
       <div className={styles.components}>
         <div className={styles.dropDownComponents}>
-          人口構成：
+          <p>人口構成</p>
           <select value={value} onChange={onChange} className={styles.select}>
             {options.map((option) => (
               <option key={option.value} value={option.value}>
@@ -19,6 +19,9 @@ const Dropdown = ({ options, value, onChange }: ChildProps) => {
               </option>
             ))}
           </select>
+          <p className={styles.dropdown_p}>
+            ※変更したら都道府県を再度選択してください。
+          </p>
         </div>
       </div>
     </>
