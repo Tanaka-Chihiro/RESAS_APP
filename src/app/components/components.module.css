@@ -1,6 +1,10 @@
+.main {
+  width: 100%;
+}
+/* ヘッダー・フッター */
 .header {
   text-align: center;
-  font-size: 24px;
+  /* font-size: 24px; */
   color: #e2f1e7;
   background-color: #387478;
   padding: 10px 0px;
@@ -14,58 +18,76 @@
   padding-bottom: 10px;
 }
 
+/* コンポーネント共通 */
 .components {
   margin: 20px 100px;
 }
 
-.PCcomponents {
-  margin: 20px 100px;
-}
-.SPcomponents {
-  display: none;
-}
-
-.p {
-  margin: 0px 50px;
-  margin-bottom: 5px;
-}
-.checkBoxComponents {
-  padding: 0px 50px;
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 10px;
-}
-.checkBox {
-  margin-right: 5px;
-}
-.checkBoxLabel {
-  margin-left: 5px;
-  font-size: 16px;
-}
-
+/* ドロップダウンメニュー */
 .dropDownComponents {
-  margin: 20px 50px;
   display: flex;
+}
+.dropdown_p {
+  margin: auto 0;
+  margin-right: 10px;
+  font-size: 16px;
 }
 .select {
   width: 150px;
   height: 30px;
   font-size: 16px;
 }
-.dropdown_p {
-  margin-left: 10px;
-  font-size: 14px;
+.p {
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
+/* 都道府県チェックボックス */
+.checkBoxComponents {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+}
+.checkBox {
+  appearance: none;
+  margin-right: 5px;
+  border: solid 1px;
+  height: 14px;
+  width: 14px;
+}
+.checkBox:hover {
+  background-color: #e2f1e7;
+  transition-duration: 0.3s;
+}
+.checkBox:checked {
+  border: solid 1px;
+  height: 14px;
+  width: 14px;
+  background-color: #387478;
+}
+.checkBoxLabel {
+  margin-left: 5px;
+  font-size: 16px;
+}
+.checkBoxLabel:hover {
+  color: #629584;
+  transition-duration: 0.3s;
+}
+
+/* 人口グラフ */
 .graph {
   padding: 10px;
   border: solid 1px #000;
 }
 
+/* レスポンシブ対応 */
 @media (max-width: 767px) {
+  /* ヘッダー・フッター */
   .header {
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
     color: #e2f1e7;
     background-color: #387478;
     padding: 10px 0px;
@@ -80,33 +102,28 @@
   }
 
   .components {
-    margin: 20px auto;
-  }
-
-  .PCcomponents {
-    display: none;
-  }
-  .SPcomponents {
-    display: contents;
-    margin: 20px auto;
+    margin: 10px 20px;
   }
 
   .dropDownComponents {
-    margin: 10px 20px;
-    display: columns;
+    margin: 10px auto;
   }
   .select {
-    width: 100pxpx;
+    width: 100px;
     height: 20px;
     font-size: 14px;
   }
-
   .p {
-    margin: 0px 20px;
+    font-size: 10px;
+    margin-top: 5px;
     margin-bottom: 5px;
   }
+
+  .preMenu {
+    margin: 0px auto;
+  }
   .checkBoxComponents {
-    padding: 0px 20px;
+    padding: 10px 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 5px;

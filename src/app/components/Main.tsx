@@ -4,6 +4,7 @@ import axios from "axios";
 import Prefectures from "./Prefectures";
 import Graph from "./Graph";
 import Dropdown from "./Dropdown";
+import styles from "./components.module.css";
 
 const Main = () => {
   //都道府県一覧
@@ -116,15 +117,10 @@ const Main = () => {
     }
   };
 
-  //アコーディオンメニューの処理
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
-
   console.log(prefPopulation);
 
   return (
-    <main>
+    <main className={styles.main}>
       <Dropdown
         options={options}
         value={selectedValue}
@@ -134,8 +130,6 @@ const Main = () => {
         <Prefectures
           prefectures={prefectures.result}
           onChange={handleClickCheck}
-          isOpen={isOpen}
-          onToggle={handleToggle}
         />
       )}
       {selectedValue === options[0].value ? (

@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <>
       <header className={styles.header}>
-        <p>都道府県別人口グラフ</p>
+        <h1>都道府県別人口グラフ</h1>
       </header>
     </>
   );
