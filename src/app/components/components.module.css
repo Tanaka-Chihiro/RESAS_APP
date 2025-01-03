@@ -4,7 +4,7 @@
 /* ヘッダー・フッター */
 .header {
   text-align: center;
-  /* font-size: 24px; */
+  font-size: 16px;
   color: #e2f1e7;
   background-color: #387478;
   padding: 10px 0px;
@@ -33,6 +33,7 @@
   font-size: 16px;
 }
 .select {
+  cursor: pointer;
   width: 150px;
   height: 30px;
   font-size: 16px;
@@ -44,6 +45,12 @@
 }
 
 /* 都道府県チェックボックス */
+.PCcomponents {
+  margin: 20px 100px;
+}
+.SPcomponents {
+  display: none;
+}
 .checkBoxComponents {
   margin: 0 auto;
   display: grid;
@@ -51,25 +58,37 @@
   gap: 10px;
 }
 .checkBox {
+  position: relative;
   appearance: none;
   margin-right: 5px;
   border: solid 1px;
+  border-radius: 3px;
   height: 14px;
   width: 14px;
+  cursor: pointer;
 }
 .checkBox:hover {
   background-color: #e2f1e7;
   transition-duration: 0.3s;
 }
 .checkBox:checked {
-  border: solid 1px;
-  height: 14px;
-  width: 14px;
   background-color: #387478;
+}
+.checkBox:checked:after {
+  position: absolute;
+  content: "";
+  top: 1px;
+  left: 4px;
+  height: 8px;
+  width: 4px;
+  border-right: 2px solid #e2f1e7;
+  border-bottom: 2px solid #e2f1e7;
+  transform: rotate(45deg);
 }
 .checkBoxLabel {
   margin-left: 5px;
   font-size: 16px;
+  cursor: pointer;
 }
 .checkBoxLabel:hover {
   color: #629584;
@@ -87,7 +106,7 @@
   /* ヘッダー・フッター */
   .header {
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     color: #e2f1e7;
     background-color: #387478;
     padding: 10px 0px;
@@ -100,11 +119,11 @@
     padding-top: 10px;
     padding-bottom: 10px;
   }
-
+  /* コンポーネント共通 */
   .components {
     margin: 10px 20px;
   }
-
+  /* ドロップダウンメニュー */
   .dropDownComponents {
     margin: 10px auto;
   }
@@ -118,9 +137,34 @@
     margin-top: 5px;
     margin-bottom: 5px;
   }
-
-  .preMenu {
-    margin: 0px auto;
+  /* 都道府県チェックボックス */
+  .PCcomponents {
+    display: none;
+  }
+  .SPcomponents {
+    display: block;
+    margin: 10px 20px;
+  }
+  .button {
+    position: relative;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 16px;
+    width: 100%;
+    border: none;
+    color: #e2f1e7;
+    background-color: #387478;
+  }
+  .button:after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    height: 10px;
+    width: 10px;
+    border-right: 2px solid #e2f1e7;
+    border-bottom: 2px solid #e2f1e7;
+    transform: rotate(45deg);
   }
   .checkBoxComponents {
     padding: 10px 20px;
@@ -135,7 +179,7 @@
     margin-left: 5px;
     font-size: 14px;
   }
-
+  /* 人口グラフ */
   .graph {
     margin: 10px;
     padding: 10px;

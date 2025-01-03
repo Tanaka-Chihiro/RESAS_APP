@@ -16,9 +16,6 @@ const Main = () => {
     }[];
   } | null>(null);
 
-  //アコーディオンメニュー
-  const [isOpen, setIsOpen] = useState(false);
-
   //人口情報
   const [prefPopulation, setPrefPopulation] = useState<
     {
@@ -29,6 +26,9 @@ const Main = () => {
 
   //年代選択のプルダウンメニュー
   const [selectedValue, setSelectedValue] = useState<string>("0");
+
+  //SP版アコーディオンメニュー
+  const [isOpen, setIsOpen] = useState(false);
 
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -65,6 +65,11 @@ const Main = () => {
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);
     setPrefPopulation([]);
+  };
+
+  //SP版アコーディオンメニューをクリックしたときの処理
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
   };
 
   //チェックボックス
@@ -130,6 +135,8 @@ const Main = () => {
         <Prefectures
           prefectures={prefectures.result}
           onChange={handleClickCheck}
+          isOpen={isOpen}
+          onToggle={handleToggle}
         />
       )}
       {selectedValue === options[0].value ? (
