@@ -5,24 +5,14 @@ import Prefectures from "./Prefectures";
 import Graph from "./Graph";
 import Dropdown from "./Dropdown";
 import styles from "./components.module.css";
+import { PrefecturesState, PopulationState } from "../lib/types";
 
 const Main = () => {
   //都道府県一覧
-  const [prefectures, setPrefectures] = useState<{
-    message: null;
-    result: {
-      prefCode: number;
-      prefName: string;
-    }[];
-  } | null>(null);
+  const [prefectures, setPrefectures] = useState<PrefecturesState | null>(null);
 
   //人口情報
-  const [prefPopulation, setPrefPopulation] = useState<
-    {
-      prefName: string;
-      data: { year: number; value: number }[];
-    }[]
-  >([]);
+  const [prefPopulation, setPrefPopulation] = useState<PopulationState>([]);
 
   //年代選択のプルダウンメニュー
   const [selectedValue, setSelectedValue] = useState<string>("0");
@@ -45,7 +35,6 @@ const Main = () => {
         }
       )
       .then((results) => {
-        console.log(results);
         setPrefectures(results.data);
       })
       .catch((error) => {
@@ -61,6 +50,7 @@ const Main = () => {
     { label: "生産年齢人口", value: "2" },
     { label: "老年人口", value: "3" },
   ];
+
   //年代を選択したときの処理
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);
@@ -72,19 +62,21 @@ const Main = () => {
     setIsOpen(!isOpen);
   };
 
-  //チェックボックス
+  //チェックボックスの処理
   const handleClickCheck = (
     prefName: string,
     prefCode: number,
     check: boolean
   ) => {
-    let c_prefPopulation = prefPopulation.slice();
+    const checkedPrefPopulation = prefPopulation.slice();
 
     //チェックをつけたときの処理
     if (check) {
+      //現在チェックされている都道府県を確認
       if (
-        c_prefPopulation.findIndex((value) => value.prefName === prefName) !==
-        -1
+        checkedPrefPopulation.findIndex(
+          (value) => value.prefName === prefName
+        ) !== -1
       )
         return;
 
@@ -101,11 +93,11 @@ const Main = () => {
           }
         )
         .then((results) => {
-          c_prefPopulation.push({
+          checkedPrefPopulation.push({
             prefName: prefName,
             data: results.data.result.data[`${selectedValue}`].data,
           });
-          setPrefPopulation(c_prefPopulation);
+          setPrefPopulation(checkedPrefPopulation);
         })
         .catch((error) => {
           console.log("取得に失敗しました");
@@ -113,16 +105,17 @@ const Main = () => {
         });
     } else {
       //チェックを外した時の処理
-      const deleteIndex = c_prefPopulation.findIndex(
+      const deleteIndex = checkedPrefPopulation.findIndex(
         (value) => value.prefName === prefName
       );
+      //現在チェックされている都道府県を確認
       if (deleteIndex === -1) return;
-      c_prefPopulation.splice(deleteIndex, 1);
-      setPrefPopulation(c_prefPopulation);
+
+      //チェックを外した都道府県を削除
+      checkedPrefPopulation.splice(deleteIndex, 1);
+      setPrefPopulation(checkedPrefPopulation);
     }
   };
-
-  console.log(prefPopulation);
 
   return (
     <main className={styles.main}>

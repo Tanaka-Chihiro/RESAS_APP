@@ -2,23 +2,16 @@ import styles from "./components.module.css";
 import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import { GraphProps } from "../lib/types";
 
-type Props = {
-  label: string;
-  populationdata: {
-    prefName: string;
-    data: { year: number; value: number }[];
-  }[];
-};
+const Graph = ({ label, populationdata }: GraphProps) => {
+  const series: Highcharts.SeriesOptionsType[] = [];
+  const categories = [];
 
-const Graph = ({ label, populationdata }: Props) => {
-  let series: Highcharts.SeriesOptionsType[] = [];
-  let categories = [];
+  for (const p of populationdata) {
+    const data = [];
 
-  for (let p of populationdata) {
-    let data = [];
-
-    for (let pd of p.data) {
+    for (const pd of p.data) {
       data.push(pd.value);
       categories.push(String(pd.year));
     }

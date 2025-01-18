@@ -1,12 +1,7 @@
 import styles from "./components.module.css";
+import { DropdownProps } from "../lib/types";
 
-type ChildProps = {
-  options: { label: string; value: string }[];
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-};
-
-const Dropdown = ({ options, value, onChange }: ChildProps) => {
+const Dropdown = ({ options, value, onChange }: DropdownProps) => {
   return (
     <>
       <div className={styles.components}>

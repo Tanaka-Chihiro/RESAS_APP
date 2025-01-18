@@ -1,18 +1,13 @@
 import styles from "./components.module.css";
 import React from "react";
+import { PrefectureProps } from "../lib/types";
 
-type Props = {
-  prefectures:
-    | {
-        prefCode: number;
-        prefName: string;
-      }[];
-  onChange: (name: string, prefName: number, check: boolean) => void;
-  isOpen: boolean;
-  onToggle: () => void;
-};
-
-const Prefectures = ({ prefectures, onChange, isOpen, onToggle }: Props) => {
+const Prefectures = ({
+  prefectures,
+  onChange,
+  isOpen,
+  onToggle,
+}: PrefectureProps) => {
   return (
     <>
       {/* PC版 */}
