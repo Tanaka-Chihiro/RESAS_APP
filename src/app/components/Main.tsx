@@ -25,15 +25,7 @@ const Main = () => {
   useEffect(() => {
     //都道府県一覧の取得
     axios
-      .get(
-        "https://yumemi-frontend-engineer-codecheck-api.vercel.app/api/v1/prefectures",
-        {
-          headers: {
-            "X-API-KEY": API_KEY,
-            "Content-Type": "application/json; charset=UTF-8",
-          },
-        }
-      )
+      .get("http://localhost:3000/api/prefectureAPI")
       .then((results) => {
         setPrefectures(results.data);
       })
@@ -82,22 +74,14 @@ const Main = () => {
 
       //チェックを付けた都道府県の人口情報を取得
       axios
-        .get(
-          "https://yumemi-frontend-engineer-codecheck-api.vercel.app/api/v1/population/composition/perYear?prefCode=" +
-            String(prefCode),
-          {
-            headers: {
-              "X-API-KEY": API_KEY,
-              "Content-Type": "application/json; charset=UTF-8",
-            },
-          }
-        )
+        .get(`http://localhost:3000/api/${String(prefCode)}`)
         .then((results) => {
           checkedPrefPopulation.push({
             prefName: prefName,
-            data: results.data.result.data[`${selectedValue}`].data,
+            data: results.data[`${selectedValue}`].data,
           });
           setPrefPopulation(checkedPrefPopulation);
+          console.log(checkedPrefPopulation);
         })
         .catch((error) => {
           console.log("取得に失敗しました");
