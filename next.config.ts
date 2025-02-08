@@ -16,7 +16,7 @@ const nextConfig = {
           {
             // CORSを許可するオリジン
             key: "Access-Control-Allow-Origin",
-            value: "*",
+            value: "https://resas-bqm1pejn8-tanaka-chihros-projects.vercel.app",
           },
           {
             // 許可するメソッド
