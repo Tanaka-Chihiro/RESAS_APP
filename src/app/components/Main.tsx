@@ -20,12 +20,12 @@ const Main = () => {
   //SP版アコーディオンメニュー
   const [isOpen, setIsOpen] = useState(false);
 
-  const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+  const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     //都道府県一覧の取得
     axios
-      .get("http://localhost:3000/api/prefectureAPI")
+      .get(`${apiURL}/api/prefectureAPI`)
       .then((results) => {
         setPrefectures(results.data);
       })
@@ -74,7 +74,7 @@ const Main = () => {
 
       //チェックを付けた都道府県の人口情報を取得
       axios
-        .get(`http://localhost:3000/api/${String(prefCode)}`)
+        .get(`${apiURL}/api/${String(prefCode)}`)
         .then((results) => {
           checkedPrefPopulation.push({
             prefName: prefName,
