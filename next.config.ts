@@ -3,22 +3,23 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/api/(.*)",
+        source: "/api/:path*",
         headers: [
           {
             // CORSを許可するオリジン
             key: "Access-Control-Allow-Origin",
-            value: "https://resas-lo2o9h9n5-tanaka-chihros-projects.vercel.app",
+            value:
+              "https://resas-e4ks9s8vs-tanaka-chihros-projects.vercel.app/",
           },
           {
             // 許可するメソッド
             key: "Access-Control-Allow-Methods",
-            value: "*",
+            value: "GET,OPTIONS,POST",
           },
           {
             // 許可するリクエストヘッダ
             key: "Access-Control-Allow-Headers",
-            value: "*",
+            value: "Content-Type",
           },
         ],
       },
